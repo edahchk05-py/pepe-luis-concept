@@ -843,8 +843,8 @@ footer{background:#0D1F13;border-top:1px solid rgba(255,255,255,.05);padding:4.5
     <li><a href="#reviews" data-fr="Avis" data-en="Reviews">Avis</a></li>
     <li><a href="#visit" data-fr="Nous Trouver" data-en="Find Us">Nous Trouver</a></li>
     <li><a href="tel:+212619536933" class="nav-cta" data-fr="Réserver" data-en="Book">Réserver</a></li>
-    <li><button class="lang-btn" id="lang-btn" onclick="toggleLang()" aria-label="Switch language">FR</button></li>
   </ul>
+  <button class="lang-btn" id="lang-btn" onclick="toggleLang()" aria-label="Switch language">FR</button>
   <button class="nav-ham" id="ham" aria-label="Navigation" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -1596,7 +1596,7 @@ footer{background:#0D1F13;border-top:1px solid rgba(255,255,255,.05);padding:4.5
 }
 
 /* ── Language switcher ─────────────────────────────── */
-.lang-btn{font-family:'Josefin Sans',sans-serif;font-size:.6rem;letter-spacing:.14em;font-weight:600;background:transparent;border:1.5px solid rgba(255,255,255,.4);color:#fff;padding:.38rem .75rem;border-radius:3px;cursor:pointer;transition:background .2s,color .2s,border-color .2s;text-transform:uppercase}
+.lang-btn{font-family:'Josefin Sans',sans-serif;font-size:.6rem;letter-spacing:.14em;font-weight:600;background:transparent;border:1.5px solid rgba(255,255,255,.5);color:#fff;padding:.35rem .7rem;border-radius:3px;cursor:pointer;transition:background .2s,color .2s,border-color .2s;text-transform:uppercase;flex-shrink:0}
 .lang-btn:hover{background:rgba(255,255,255,.15)}
 [data-lang="en"] .lang-btn{border-color:rgba(255,255,255,.7);background:rgba(255,255,255,.1)}
 
@@ -1641,12 +1641,7 @@ section { scroll-margin-top: 80px; }
 
 /* Numbers strip */
 .nums { border-top: 1px solid rgba(27,67,50,.08); border-bottom: 1px solid rgba(27,67,50,.08); }
-.num-big {
-  background: linear-gradient(135deg, var(--g) 0%, #2d6a4f 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+
 .num-item + .num-item { border-left: 1px solid rgba(27,67,50,.1); }
 
 /* Card hover effects */
@@ -1737,15 +1732,7 @@ img {
   transition: opacity .3s ease;
 }
 
-/* Lang button refinement */
-.lang-btn {
-  font-size: .58rem;
-  letter-spacing: .16em;
-}
-[data-lang="en"] .lang-btn {
-  background: rgba(255,255,255,.15);
-  border-color: rgba(255,255,255,.6);
-}
+
 
 /* Subtle gradient on paella section */
 .paella-text {
@@ -1766,6 +1753,141 @@ body.loaded .hero-badge { opacity: 1; transform: translateY(0); }
 body:not(.loaded) nav { opacity: 0; }
 nav { transition: opacity .7s ease; }
 body.loaded nav { opacity: 1; }
+
+/* ── MOBILE IMPROVEMENTS ──────────────────────────────────── */
+
+/* Nav: ensure lang btn always sits right of hamburger */
+nav { display:flex; align-items:center; }
+.lang-btn { order:2; }
+.nav-ham { order:3; }
+.nav-links { order:1; flex:1; justify-content:flex-end; }
+
+/* Better touch targets on mobile */
+@media(max-width:768px){
+  /* Nav lang button - always visible top bar */
+  .lang-btn {
+    font-size:.55rem;
+    padding:.32rem .65rem;
+    border-radius:4px;
+    margin-right:.5rem;
+  }
+  
+  /* Hero - better vertical centering, bigger title */
+  .hero-content {
+    justify-content:flex-end;
+    padding-bottom:env(safe-area-inset-bottom,0px);
+    padding-bottom:max(4rem,calc(4rem + env(safe-area-inset-bottom)));
+  }
+  .hero-h1 { font-size:clamp(2.8rem,11vw,4.2rem); }
+  .hero-btns { flex-direction:column; align-items:flex-start; gap:.65rem; }
+  .hero-btns .btn { width:100%; max-width:280px; text-align:center; padding:.9rem 1.4rem; }
+  
+  /* Hero badge - position better on small screens */
+  .hero-badge { top:4.5rem; right:1rem; }
+  
+  /* CTA section - full width buttons */
+  .btn-primary, .btn-outline { min-height:48px; }
+  
+  /* Trust strip - horizontal scroll instead of wrapping */
+  .trust { 
+    overflow-x:auto; 
+    flex-wrap:nowrap;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;
+    padding-bottom:1rem;
+    scrollbar-width:none;
+  }
+  .trust::-webkit-scrollbar { display:none; }
+  .trust-item { scroll-snap-align:start; flex-shrink:0; }
+  
+  /* Numbers - 2x2 grid looks clean */
+  .numbers { grid-template-columns:1fr 1fr; gap:0; }
+  .num-big { font-size:2.4rem; }
+  .num-item { padding:2rem 1rem; }
+  
+  /* About section - more breathing room */
+  .about-text { padding:3.5rem 1.4rem; }
+  .astat-grid { gap:.6rem; }
+  
+  /* Review cards - full width, better padding */
+  .rcard { padding:1.6rem 1.4rem; }
+  .rcard-mark { font-size:4rem; }
+  .rcard-text { font-size:.88rem; line-height:1.7; }
+  
+  /* Reservation CTA - better mobile layout */
+  .rescta { padding:4rem 1.4rem; }
+  .rescta-btns .btn { font-size:.6rem; padding:.95rem 1.4rem; }
+  
+  /* Visit section - stacked CTAs with full width */
+  .vcta-row { flex-direction:column; gap:.7rem; }
+  
+  /* Footer - better spacing */
+  footer { padding:3.5rem 1.4rem 2rem; }
+  .f-brand { margin-bottom:.5rem; }
+  
+  /* Menu cards - full image height */
+  .mcard-photo { height:240px; }
+  
+  /* Section titles - tighter on mobile */
+  .sec-title { line-height:1.05; }
+  
+  /* Gallery on mobile - horizontal scroll */
+  .gallery {
+    grid-template-columns:repeat(3,75vw);
+    height:260px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+  }
+  .gcell { 
+    scroll-snap-align:start;
+    height:260px;
+    min-height:260px;
+  }
+  
+  /* Booking bar - better mobile */
+  .bookbar { 
+    position:fixed;
+    bottom:0;left:0;right:0;
+    padding:.8rem 1.4rem calc(.8rem + env(safe-area-inset-bottom));
+    z-index:9001;
+    background:rgba(27,67,50,.97);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-top:1px solid rgba(255,255,255,.1);
+    flex-direction:row;
+    align-items:center;
+    gap:.8rem;
+  }
+  .bookbar-txt { font-size:.7rem; flex:1; text-align:left; }
+  .bookbar a { 
+    white-space:nowrap;
+    padding:.7rem 1.2rem;
+    font-size:.56rem;
+    width:auto;
+    max-width:none;
+    margin:0;
+  }
+  
+  /* WhatsApp button - above booking bar */
+  .wa { bottom:calc(5rem + env(safe-area-inset-bottom)); right:1.2rem; }
+  
+  /* Eyebrow text - slightly bigger on mobile */
+  .eyebrow { font-size:.56rem; }
+  
+  /* Paella section text */
+  .paella-text { padding:3.5rem 1.4rem; }
+  .paella-quote { font-size:1.05rem; line-height:1.6; }
+}
+
+/* Very small screens */
+@media(max-width:380px){
+  .hero-h1 { font-size:clamp(2.4rem,10vw,3.2rem); }
+  .hero-btns .btn { max-width:100%; }
+  .num-big { font-size:2rem; }
+}
+
+/* ── END MOBILE IMPROVEMENTS ── */
 </style>
 
 <script>
