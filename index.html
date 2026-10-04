@@ -1300,6 +1300,7 @@ footer{background:#0D1F13;border-top:1px solid rgba(255,255,255,.05);padding:4.5
 <div id="menu-overlay" role="dialog" aria-modal="true" aria-label="La Carte Pepe Luis" hidden>
   <div class="mo-backdrop" onclick="closeMenu()"></div>
   <div class="mo-panel">
+    <div class="mo-drag-handle" aria-hidden="true"></div>
     <div class="mo-header">
       <div class="mo-brand">
         <span class="mo-brand-name">Pepe<em>Luis</em></span>
@@ -1527,6 +1528,7 @@ footer{background:#0D1F13;border-top:1px solid rgba(255,255,255,.05);padding:4.5
 #menu-overlay.mo-open .mo-panel{transform:translateY(0)}
 
 /* header */
+.mo-drag-handle{width:40px;height:4px;background:rgba(27,67,50,.2);border-radius:2px;margin:12px auto 0;flex-shrink:0}
 .mo-header{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2rem .8rem 2rem;flex-shrink:0;min-height:64px;background:var(--iv,#F8F4EC);position:relative;z-index:2;border-bottom:1px solid rgba(27,67,50,.08)}
 .mo-brand{display:flex;flex-direction:column}
 .mo-brand-name{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--g,#1B4332);letter-spacing:.02em}
@@ -1536,7 +1538,7 @@ footer{background:#0D1F13;border-top:1px solid rgba(255,255,255,.05);padding:4.5
 .mo-close:hover{background:var(--g,#1B4332);color:var(--iv,#F8F4EC)}
 
 /* tabs */
-.mo-tabs{display:flex;gap:0;overflow-x:auto;overflow-y:hidden;touch-action:pan-x;padding:.7rem 2rem 0;flex-shrink:0;scrollbar-width:none;border-bottom:1.5px solid rgba(27,67,50,.12);margin-top:0}
+.mo-tabs{display:flex;gap:0;overflow-x:auto;overflow-y:hidden;touch-action:pan-x;padding:.7rem 2rem 0;flex-shrink:0;scrollbar-width:none;border-bottom:1.5px solid rgba(27,67,50,.12);margin-top:0;background:var(--iv,#F8F4EC);position:relative;z-index:1}
 .mo-tabs::-webkit-scrollbar{display:none}
 .mo-tab{font-family:'Josefin Sans',sans-serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;background:none;border:none;cursor:pointer;color:rgba(27,67,50,.55);font-weight:600;padding:.5rem 1.1rem;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1.5px;transition:color .2s,border-color .2s}
 .mo-tab.active{color:var(--g,#1B4332);border-bottom-color:var(--g,#1B4332);font-weight:700}
